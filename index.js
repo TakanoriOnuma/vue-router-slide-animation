@@ -72,7 +72,7 @@ new Vue({
     </div>
   `,
   data() {
-    const pageNum = window.history.state.pageNum || 0;
+    const pageNum = window.history.state ? window.history.pageNum || 0 : 0;
     // ページ番号が今のhistoryにない場合は0で初期化する（実際は0でも上書きしているが動作上問題はない）
     if (!pageNum) {
       window.history.replaceState({
