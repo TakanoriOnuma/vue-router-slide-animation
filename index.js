@@ -72,8 +72,16 @@ new Vue({
     </div>
   `,
   data() {
+    const pageNum = window.history.state.pageNum || 0;
+    // ページ番号が今のhistoryにない場合は0で初期化する（実際は0でも上書きしているが動作上問題はない）
+    if (!pageNum) {
+      window.history.replaceState({
+        ...window.history.state,
+        pageNum
+      }, '');
+    }
     return {
-      pageNum: window.history.state ? window.history.state.pageNum || 0 : 0,
+      pageNum,
       transitionName: 'forward'
     }
   },
@@ -97,8 +105,8 @@ new Vue({
         if (!pageNum) {
           // $dataのpageNumをインクリメントしてhistoryにセットする
           this.$data.pageNum += 1;
-          history.replaceState({
-            ...history.state,
+          window.history.replaceState({
+            ...window.history.state,
             pageNum: this.$data.pageNum
           }, '');
         } else {
