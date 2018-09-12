@@ -1,0 +1,74 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+p {
+  margin-top: 0;
+}
+
+a {
+  display: block;
+}
+
+.page {
+  position: relative;
+  height: 100%;
+}
+
+.view {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  border: solid 1px #ccc;
+}
+
+/* forwardアニメーション */
+/* 入る時のアニメーション */
+.forward-enter-active {
+  position: absolute;
+  z-index: 2;
+  transform: translate3d(100%, 0, 0);
+  transition: transform 0.5s;
+}
+.forward-enter-to {
+  transform: translate3d(0%, 0, 0);
+}
+
+/* 出る時のアニメーション */
+.forward-leave-active {
+  position: absolute;
+  z-index: 1;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.5s;
+}
+.forward-leave-to {
+  transform: translate3d(-100%, 0, 0);
+}
+
+/* backwardアニメーション */
+/* 入る時のアニメーション */
+.backward-enter-active {
+  position: absolute;
+  z-index: 1;
+  transform: translate3d(-100%, 0, 0);
+  transition: transform 0.5s;
+}
+.backward-enter-to {
+  transform: translate3d(0, 0, 0);
+}
+
+/* 出る時のアニメーション */
+.backward-leave-active {
+  position: absolute;
+  z-index: 2;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.5s;
+}
+.backward-leave-to {
+  transform: translate3d(100%, 0, 0);
+}
