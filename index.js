@@ -101,18 +101,18 @@ new Vue({
       window.setTimeout(() => {
         // 現在のページ番号を取得する
         const { pageNum } = window.history.state;
-        // ページ番号がない場合
-        if (!pageNum) {
-          // $dataのpageNumをインクリメントしてhistoryにセットする
-          this.$data.pageNum += 1;
-          window.history.replaceState({
-            ...window.history.state,
-            pageNum: this.$data.pageNum
-          }, '');
-        } else {
-          // ページ番号がある場合は$dataのpageNumの値を更新する
+        // ページ番号がある場合は更新して終了
+        if (Number.isInteger(pageNum)) {
           this.$data.pageNum = pageNum;
+          return;
         }
+
+        // ページ番号がない場合は$dataのpageNumをインクリメントしてhistoryにセットする
+        this.$data.pageNum += 1;
+        window.history.replaceState({
+          ...window.history.state,
+          pageNum: this.$data.pageNum
+        }, '');
       }, 0);
     });
   }
